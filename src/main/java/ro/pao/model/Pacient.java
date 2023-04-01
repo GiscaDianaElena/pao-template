@@ -12,6 +12,7 @@ public class Pacient {
     private Adresa adresa;
     private String numarTelefon;
     private boolean asigurareMedicala;
+    private ArrayList<Programare> programari = new ArrayList<>();
 
     public Pacient(String nume, String prenume, LocalDate dataNastere, Gen gen, Adresa adresa, String numarTelefon,
                    boolean asigurareMedicala){
@@ -78,5 +79,22 @@ public class Pacient {
 
     public void setAsigurareMedicala(boolean asigurareMedicala) {
         this.asigurareMedicala = asigurareMedicala;
+    }
+
+    public List<Programare> getProgramari() {
+        return programari;
+    }
+
+    public void setProgramari(List<Programare> programari) {
+        this.programari = (ArrayList<Programare>) programari;
+    }
+
+    // Metode de adaugare si stergere a programarilor
+    public void adaugaProgramare(Programare programare){
+        programari.add(programare);
+    }
+
+    public void stergeProgramare(Programare programare){
+        programari.remove(programare);
     }
 }
