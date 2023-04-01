@@ -1,0 +1,21 @@
+package ro.pao.model;
+
+public enum Specializare {
+    CARDIOLOGIE,
+    ORTOPEDIE,
+    GINECOLOGIE,
+    DERMATOLOGIE,
+    NEUROLOGIE,
+    PSIHIATRIE,
+    ONCOLOGIE,
+    OFTALMOLOGIE,
+    ORL,
+    ENDOCRIONOLOGIE,
+    NUTRITIE,
+    DIETETICA,
+    DIABET,
+    REUMATOLOGIE,
+    CHIRURGIE,
+    GASTROENTEROLOGIE,
+    PSIHOLOGIE
+}
