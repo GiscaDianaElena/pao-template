@@ -9,10 +9,10 @@ public class Programare {
     private Pacient pacient;
     private ServiciiMedicale serviciiMedicale;
     private Duration durata;
-    private String status;
+    private StatutProgramare status;
 
     public Programare(LocalDateTime dataOra, Medici medic, Pacient pacient, ServiciiMedicale serviciiMedicale, Duration durata,
-                      String status){
+                      StatutProgramare status){
         this.dataOra = dataOra;
         this.medic = medic;
         this.pacient = pacient;
@@ -61,11 +61,11 @@ public class Programare {
         this.durata = durata;
     }
 
-    public String getStatus() {
+    public StatutProgramare getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatutProgramare status) {
         this.status = status;
     }
 }
