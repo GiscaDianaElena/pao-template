@@ -1,8 +1,10 @@
 package ro.pao.application;
 
 import ro.pao.model.ExampleClass;
-import ro.pao.service.ExampleService;
-import ro.pao.service.impl.ExampleServiceImpl;
+import ro.pao.model.Medici;
+import ro.pao.model.Programare;
+import ro.pao.service.*;
+import ro.pao.service.impl.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,61 +16,73 @@ import java.util.UUID;
  *
  * In cazul in care aveam definit mai multe servicii, la fel, faceam o initializare a serviciile si astfel apelam metode din serviciu.
  */
+
+
+
+/*
 public class Menu {
 
-    private static Menu INSTANCE;
+    private static Menu Instance;
 
-    private final ExampleService exampleService = new ExampleServiceImpl();
+    private final ProgramareService programareService = new ProgramareServiceImpl();
 
     public static Menu getInstance() {
-        return (INSTANCE == null ? new Menu() : INSTANCE);
+        return (Instance == null ? new Menu() : Instance);
     }
 
-    public void intro() {
-        String intro = """
-                Intro example
-                """;
+    private final FacturaService facturaService = new FacturaServiceImpl();
+    private final FisaMedicalaService fisaMedicalaService = new FisaMedicalaServiceImpl();
+    private final MediciService mediciService = new MediciServiceImpl();
+    private final PacientService pacientService = new PacientServiceImpl();
+    private final PromotiiService promotiiService = new PromotiiServiceImpl();
+    private final RezultatAnalizeService rezultatAnalizeService = new RezultatAnalizeServiceImpl();
+    private final ServiciiMedicaleService serviciiMedicaleService = new ServiciiMedicaleServiceImpl();
+    private final TratamentService tratamentService = new TratamentServiceImpl();
 
-        System.out.println(intro);
-
-        ExampleClass exampleClass = ExampleClass.builder()
-                .id(UUID.randomUUID())
-                .creationDate(LocalDate.now()) // data de azi
-                .updateDate(LocalDate.now())
-                .deleteDate(LocalDate.now())
-                .build();
-
-        exampleService.addOnlyOne(exampleClass);
-
-        List<ExampleClass> exampleServiceList = List.of(
-                ExampleClass.builder()
-                        .id(UUID.randomUUID())
-                        .creationDate(LocalDate.of(2023, 03, 22))
-                        .updateDate(LocalDate.now())
-                        .build(),
-                ExampleClass.builder()
-                        .id(UUID.randomUUID())
-                        .creationDate(LocalDate.of(2023, 03, 22))
-                        .updateDate(LocalDate.now())
-                        .build()
-        );
-
-        exampleService.addAllFromGivenList(exampleServiceList);
-
-        System.out.println("Inainte de stergere: ");
-        exampleService.getAllFromList()
-                .forEach(elementFromList -> System.out.println(elementFromList));
-
-
-        System.out.println("Dupa modificare: ");
-        exampleClass.setUpdateDate(LocalDate.of(2, 2, 2));
-        exampleService.modificaElementById(exampleClass.getId(), exampleClass);
-        exampleService.getAllFromList()
-                .forEach(elementFromList -> System.out.println(elementFromList));
-
-        System.out.println("Dupa stergere: ");
-        exampleService.removeElementById(exampleClass.getId());
-        exampleService.getAllFromList()
-                .forEach(elementFromList -> System.out.println(elementFromList));
+    public static void setInstance(Menu Instance) {
+        Menu.Instance = Instance;
     }
-}
+
+    public static void setInstance(Menu instance) {
+        Instance = Instance;
+    }
+
+    public FacturaService getFacturaService() {
+        return facturaService;
+    }
+
+    public FisaMedicalaService getFisaMedicalaService() {
+        return fisaMedicalaService;
+    }
+
+    public MediciService getMediciService() {
+        return mediciService;
+    }
+
+    public PacientService getPacientService() {
+        return pacientService;
+    }
+
+    public PromotiiService getPromotiiService() {
+        return promotiiService;
+    }
+
+    public RezultatAnalizeService getRezultatAnalizeService() {
+        return rezultatAnalizeService;
+    }
+
+    public ServiciiMedicaleService getServiciiMedicaleService() {
+        return serviciiMedicaleService;
+    }
+
+    public TratamentService getTratamentService() {
+        return tratamentService;
+    }
+
+    public ProgramareService getProgramareService() {
+        return programareService;
+    }
+
+
+    }
+ */
