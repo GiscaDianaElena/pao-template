@@ -1,8 +1,18 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 public class Programare {
     private LocalDateTime dataOra;
     private Medici medic;
@@ -67,5 +77,9 @@ public class Programare {
 
     public void setStatus(StatutProgramare status) {
         this.status = status;
+    }
+
+    public String toString(){
+        return "Programare: " + dataOra + ", Status: " + status;
     }
 }

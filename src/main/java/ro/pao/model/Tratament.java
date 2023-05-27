@@ -1,7 +1,17 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.Duration;
 import java.time.LocalDate;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class Tratament {
     private Medici medic;
@@ -56,5 +66,10 @@ public class Tratament {
 
     public void setDurata(Duration durata) {
         this.durata = durata;
+    }
+
+    public String toString(){
+        return "Medic " + medic + ", Pacient " + pacient + ", Data Prescrierii: " + dataPrescrierii +
+                ", Medicamente: " + medicamente + ", Durata: " + durata;
     }
 }

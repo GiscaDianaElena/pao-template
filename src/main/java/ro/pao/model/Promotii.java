@@ -1,6 +1,16 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.Period;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class Promotii {
     private String numePromotie;
@@ -55,5 +65,10 @@ public class Promotii {
 
     public void setRestrictii(String restrictii) {
         this.restrictii = restrictii;
+    }
+
+    public String toString(){
+        return "Nume Promotie " + numePromotie + ", Descriere: " + descriere + ", Perioada: " + perioada +
+                ", Cod Promotional: " + codPromotional + ", Restrictii: " + restrictii;
     }
 }

@@ -1,8 +1,17 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 
 public class Pacient {
     private String nume;
@@ -23,6 +32,10 @@ public class Pacient {
         this.adresa = adresa;
         this.numarTelefon = numarTelefon;
         this.asigurareMedicala = asigurareMedicala;
+    }
+
+    public static Object builder() {
+        return 0;
     }
 
     public String getNume() {
@@ -96,5 +109,11 @@ public class Pacient {
 
     public void stergeProgramare(Programare programare){
         programari.remove(programare);
+    }
+
+    public String toString(){
+        return "Nume: " + nume + ", Prenume: " + prenume + ", Data Nastere " + dataNastere +
+                ", Gen: " + gen + ", Adresa " + adresa + ", Numar Telefon: " + numarTelefon +
+                ", Asigurare Medicala: " + asigurareMedicala;
     }
 }

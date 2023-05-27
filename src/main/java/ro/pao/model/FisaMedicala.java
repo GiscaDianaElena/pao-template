@@ -1,6 +1,16 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDate;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class FisaMedicala {
     private Pacient pacient;
@@ -76,5 +86,11 @@ public class FisaMedicala {
 
     public void setRezultateAnalize(RezultatAnalize rezultateAnalize) {
         this.rezultateAnalize = rezultateAnalize;
+    }
+
+    public String toString(){
+        return "Pacient: " + pacient + ", Medic " + medic + ", Data: " + data +
+                ", Medicamente " + medicamente + ", Alergii " + alergii + ", Boli Cronice " + boliCronice +
+                ", Rezultate Analize: " + rezultateAnalize;
     }
 }

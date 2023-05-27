@@ -1,7 +1,17 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 import java.util.List;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class Medici {
     private String nume;
@@ -77,5 +87,11 @@ public class Medici {
 
     public void setNumarTelefon(String numarTelefon) {
         this.numarTelefon = numarTelefon;
+    }
+
+    public String toString(){
+        return "Nume: " + nume + ", Prenume: " + prenume + ", Specializare: " + specializare +
+                ", Titlu: " + titlu + ", Experienta: " + experienta + ", Adresa: " + adresa +
+                ", Numar Telefon: " + numarTelefon;
     }
 }

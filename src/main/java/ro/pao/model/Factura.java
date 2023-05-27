@@ -1,8 +1,16 @@
 package ro.pao.model;
 
+import lombok.*;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class Factura {
     private int numarFactura;
@@ -68,5 +76,10 @@ public class Factura {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String toString(){
+        return "Numar factura: " + numarFactura + ", Data emiterii: " + dataEmiterii + ", Pacient: " + pacient +
+                ", Serviciile Medicale: " + serviciiMedicale + ", Total: " + total + ", Status: " + status;
     }
 }

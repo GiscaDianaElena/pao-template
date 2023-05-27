@@ -1,6 +1,16 @@
 package ro.pao.model;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
+
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
 
 public class ServiciiMedicale {
     private String numeServiciu;
@@ -76,5 +86,11 @@ public class ServiciiMedicale {
 
     public void setDisponibilitate(Date disponibilitate) {
         this.disponibilitate = disponibilitate;
+    }
+
+    public String toString(){
+        return "Nume Serviciu " + numeServiciu + ", Descriere " + descriere + ", Cost " + cost +
+                ", Durata " + durata + ", Personal Medical " + personalMedical + ", Echipament " + echipament +
+                ", Disponibilitate " + disponibilitate;
     }
 }
