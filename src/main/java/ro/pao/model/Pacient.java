@@ -1,6 +1,5 @@
 package ro.pao.model;
 
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -34,7 +33,7 @@ public class Pacient {
         this.asigurareMedicala = asigurareMedicala;
     }
 
-    public static Object builder() {
+    public static Pacient builder() {
         return 0;
     }
 

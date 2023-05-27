@@ -65,7 +65,7 @@ public class Medici {
         this.titlu = titlu;
     }
 
-    public double getExperienta() {
+    public static double getExperienta() {
         return experienta;
     }
 
@@ -93,5 +93,9 @@ public class Medici {
         return "Nume: " + nume + ", Prenume: " + prenume + ", Specializare: " + specializare +
                 ", Titlu: " + titlu + ", Experienta: " + experienta + ", Adresa: " + adresa +
                 ", Numar Telefon: " + numarTelefon;
+    }
+
+    public static <T> double getExperienta(T t) {
+        return null
     }
 }
