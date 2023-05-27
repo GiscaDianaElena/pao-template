@@ -20,3 +20,13 @@ public class Main {
         }
     }
 }
+
+// Exceptii
+
+class ClasaExceptii extends Exception {
+
+}
+
+class RunTimeException extends RuntimeException  {
+
+}
