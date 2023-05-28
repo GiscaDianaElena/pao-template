@@ -1,0 +1,5 @@
+Documentatie Tema2
+
+Pentru cea de a doua parte a proiectului, am creat conexiunea cu o baza de date Oracle folosindu-ma de JDBC pentru a garanta persistenta datelor. Am creat partea de Repository pentru toate clasele folosindu-ma de mappers, care fac parte din Jackson Library si am implementat pentru fiecare clasa repository.
+
+Am integrat si un sistem de logare. Am implementat exceptii. Am facut conexiunea dintre clase si baza de date. Am facut si scrierea in CSV pentru o lista de pacienti.
