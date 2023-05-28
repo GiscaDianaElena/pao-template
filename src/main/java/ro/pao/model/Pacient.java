@@ -33,7 +33,7 @@ public class Pacient {
         this.asigurareMedicala = asigurareMedicala;
     }
 
-    public static Pacient builder() {
+    public static int builder() {
         return 0;
     }
 

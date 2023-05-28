@@ -20,7 +20,7 @@ public class TratamentMapper{
         return INSTANCE;
     }
 
-    public Optional<Tratament> mapToTratament(ResultSet resultSet) throws SQLException {
+    public static Optional<Tratament> mapToTratament(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     Tratament.builder()
@@ -36,7 +36,7 @@ public class TratamentMapper{
         }
     }
 
-    public List<Tratament> mapToTratamentList(ResultSet resultSet) throws SQLException {
+    public static List<Tratament> mapToTratamentList(ResultSet resultSet) throws SQLException {
         List<Tratament> TratamentList = new ArrayList<>();
         while (resultSet.next()) {
             TratamentList.add(

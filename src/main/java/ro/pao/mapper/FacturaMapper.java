@@ -20,7 +20,7 @@ public class FacturaMapper{
         return INSTANCE;
     }
 
-    public Optional<Factura> mapToFactura(ResultSet resultSet) throws SQLException {
+    public static Optional<Factura> mapToFactura(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     Factura.builder()

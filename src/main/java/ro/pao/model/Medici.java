@@ -4,9 +4,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import org.jetbrains.annotations.Contract;
 
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -65,7 +63,7 @@ public class Medici {
         this.titlu = titlu;
     }
 
-    public static double getExperienta() {
+    public double getExperienta() {
         return experienta;
     }
 
@@ -95,7 +93,8 @@ public class Medici {
                 ", Numar Telefon: " + numarTelefon;
     }
 
-    public static <T> double getExperienta(T t) {
-        return null
+    @Contract(pure = true)
+    public static <T> Object getExperienta(T t) {
+        return null;
     }
 }

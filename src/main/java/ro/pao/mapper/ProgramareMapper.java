@@ -21,7 +21,7 @@ public class ProgramareMapper{
         return INSTANCE;
     }
 
-    public Optional<Programare> mapToProgramare(ResultSet resultSet) throws SQLException {
+    public static Optional<Programare> mapToProgramare(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     Programare.builder()
@@ -38,7 +38,7 @@ public class ProgramareMapper{
         }
     }
 
-    public List<Programare> mapToProgramareList(ResultSet resultSet) throws SQLException {
+    public static List<Programare> mapToProgramareList(ResultSet resultSet) throws SQLException {
         List<Programare> ProgramareList = new ArrayList<>();
         while (resultSet.next()) {
             ProgramareList.add(

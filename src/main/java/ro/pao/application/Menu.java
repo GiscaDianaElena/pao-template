@@ -39,7 +39,7 @@ public class Menu {
 
     private final ProgramareService programareService = new ProgramareServiceImpl(new ProgramareRepositoryImpl());
 
-    private final FacturaService facturaService = new FacturaServiceImpl(new FacturaRepositoryImpl());
+    private final FacturaService facturaService = new FacturaServiceImpl();
 
     private final FisaMedicalaService fisaMedicalaService = new FisaMedicalaServiceImpl(new FisaMedicalaRepositoryImpl());
 

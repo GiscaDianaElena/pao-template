@@ -20,7 +20,7 @@ public class RezultatAnalizeMapper{
         return INSTANCE;
     }
 
-    public Optional<RezultatAnalize> mapToRezultatAnalize(ResultSet resultSet) throws SQLException {
+    public static Optional<RezultatAnalize> mapToRezultatAnalize(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     RezultatAnalize.builder()
@@ -36,7 +36,7 @@ public class RezultatAnalizeMapper{
         }
     }
 
-    public List<RezultatAnalize> mapToRezultatAnalizeList(ResultSet resultSet) throws SQLException {
+    public static List<RezultatAnalize> mapToRezultatAnalizeList(ResultSet resultSet) throws SQLException {
         List<RezultatAnalize> RezultateAnalizeList = new ArrayList<>();
         List<RezultatAnalize> RezultatAnalizeList = null;
         while (resultSet.next()) {

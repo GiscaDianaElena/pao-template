@@ -21,7 +21,7 @@ public class FisaMedicalaMapper{
         return INSTANCE;
     }
 
-    public Optional<FisaMedicala> mapToFisaMedicala(ResultSet resultSet) throws SQLException {
+    public static Optional<FisaMedicala> mapToFisaMedicala(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     FisaMedicala.builder()
@@ -39,7 +39,7 @@ public class FisaMedicalaMapper{
         }
     }
 
-    public List<FisaMedicala> mapToFisaMedicalaList(ResultSet resultSet) throws SQLException {
+    public static List<FisaMedicala> mapToFisaMedicalaList(ResultSet resultSet) throws SQLException {
         List<FisaMedicala> FisaMedicalaList = new ArrayList<>();
         while (resultSet.next()) {
             FisaMedicalaList.add(

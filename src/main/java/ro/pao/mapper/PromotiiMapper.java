@@ -20,7 +20,7 @@ public class PromotiiMapper{
         return INSTANCE;
     }
 
-    public Optional<Promotii> mapToPromotii(ResultSet resultSet) throws SQLException {
+    public static Optional<Promotii> mapToPromotii(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
             return Optional.of(
                     Promotii.builder()
@@ -36,7 +36,7 @@ public class PromotiiMapper{
         }
     }
 
-    public List<Promotii> mapToPromotiiList(ResultSet resultSet) throws SQLException {
+    public static List<Promotii> mapToPromotiiList(ResultSet resultSet) throws SQLException {
         List<Promotii> PromotiiList = new ArrayList<>();
         while (resultSet.next()) {
             PromotiiList.add(
