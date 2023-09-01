@@ -1,31 +1,34 @@
 package ro.pao.mapper;
 
-import ro.pao.model.Medici;
+
 import ro.pao.model.Programare;
+import ro.pao.model.ORL_MEDIC;
+import ro.pao.model.enums.EnumExample;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MediciMapper{
 
-    private static final MediciMapper INSTANCE = new MediciMapper();
+public class ORL_MEDICMapper {
 
-    private MediciMapper(){
+    private static final ORL_MEDICMapper INSTANCE = new ORL_MEDICMapper();
+
+    private ORL_MEDICMapper() {
     }
 
-    public static MediciMapper getInstance(){
+    public static ORL_MEDICMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<Medici> mapToMedici(ResultSet resultSet) throws SQLException {
+
+    public Optional<ORL_MEDIC> mapToORL_MEDIC(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
-                    Medici.builder()
+                    ORL_MEDIC.builder()
                             .idPersoana(resultSet.getString(1))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
@@ -44,11 +47,11 @@ public class MediciMapper{
         }
     }
 
-    public List<Medici> mapToMediciList(ResultSet resultSet) throws SQLException {
-        List<Medici> MediciList = new ArrayList<>();
+    public List<ORL_MEDIC> mapToORL_MEDICList(ResultSet resultSet) throws SQLException {
+        List<ORL_MEDIC> ORL_MEDICList = new ArrayList<>();
         while (resultSet.next()) {
-            MediciList.add(
-                    Medici.builder()
+            ORL_MEDICList.add(
+                    ORL_MEDIC.builder()
                             .idPersoana(resultSet.getString(1))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
@@ -64,6 +67,6 @@ public class MediciMapper{
             );
         }
 
-        return MediciList;
+        return ORL_MEDICList;
     }
 }

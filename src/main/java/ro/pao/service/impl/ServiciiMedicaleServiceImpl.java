@@ -1,7 +1,5 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.Programare;
-import ro.pao.model.ServiciiMedicale;
 import ro.pao.service.ServiciiMedicaleService;
 
 import java.util.ArrayList;

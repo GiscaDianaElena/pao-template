@@ -1,25 +1,44 @@
 package ro.pao.model;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Builder
 
 public class Tratament {
-    private Medici medic;
-    private Pacient pacient;
-    private LocalDate dataPrescrierii;
-    private Medicament medicamente;
-    private Duration durata;
+    private UUID idTratament;
+    private String nume;
+    private Date dataPrescrierii;
+    private List<Medicament> medicamentList;
 
+    public Tratament(UUID idTratament, String nume, Date dataPrescrierii, List<Medicament> medicamentList){
+        this.idTratament = idTratament;
+        this.nume = nume;
+        this.dataPrescrierii = dataPrescrierii;
+        this.medicamentList = medicamentList;
+    }
+
+    @Override
+    public String toString() {
+        return "Tratament: " + idTratament + ", Nume: " + nume + ", Data prescrierii: " + dataPrescrierii +
+                ", Lista Medicamente: " + medicamentList;
+    }
+}
+
+
+
+    /*
     public Tratament(Medici medic, Pacient pacient, LocalDate dataPrescrierii, Medicament medicamente, Duration durata){
         this.medic = medic;
         this.pacient = pacient;
@@ -73,3 +92,4 @@ public class Tratament {
                 ", Medicamente: " + medicamente + ", Durata: " + durata;
     }
 }
+     */

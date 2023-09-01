@@ -1,7 +1,5 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.Programare;
-import ro.pao.model.Promotii;
 import ro.pao.service.PromotiiService;
 
 import java.util.ArrayList;

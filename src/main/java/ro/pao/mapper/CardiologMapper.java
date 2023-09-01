@@ -1,31 +1,31 @@
 package ro.pao.mapper;
 
-import ro.pao.model.Medici;
+import ro.pao.model.Cardiolog;
 import ro.pao.model.Programare;
-
+import ro.pao.model.enums.EnumExample;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MediciMapper{
+public class CardiologMapper {
 
-    private static final MediciMapper INSTANCE = new MediciMapper();
+    private static final CardiologMapper INSTANCE = new CardiologMapper();
 
-    private MediciMapper(){
+    private CardiologMapper() {
     }
 
-    public static MediciMapper getInstance(){
+    public static CardiologMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<Medici> mapToMedici(ResultSet resultSet) throws SQLException {
+    public Optional<Cardiolog> mapToCardiolog(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
-                    Medici.builder()
+                    Cardiolog.builder()
+                            // .idPerson(UUID.fromString(resultSet.getString(1)))
                             .idPersoana(resultSet.getString(1))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
@@ -44,11 +44,11 @@ public class MediciMapper{
         }
     }
 
-    public List<Medici> mapToMediciList(ResultSet resultSet) throws SQLException {
-        List<Medici> MediciList = new ArrayList<>();
+    public List<Cardiolog> mapToCardiologList(ResultSet resultSet) throws SQLException {
+        List<Cardiolog> CardiologList = new ArrayList<>();
         while (resultSet.next()) {
-            MediciList.add(
-                    Medici.builder()
+            CardiologList.add(
+                    Cardiolog.builder()
                             .idPersoana(resultSet.getString(1))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
@@ -64,6 +64,6 @@ public class MediciMapper{
             );
         }
 
-        return MediciList;
+        return CardiologList;
     }
 }

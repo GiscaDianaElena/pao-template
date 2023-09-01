@@ -1,6 +1,5 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.FisaMedicala;
 import ro.pao.model.Medici;
 import ro.pao.service.MediciService;
 

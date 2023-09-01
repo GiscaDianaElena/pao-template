@@ -1,31 +1,34 @@
 package ro.pao.mapper;
 
-import ro.pao.model.Medici;
+
 import ro.pao.model.Programare;
+import ro.pao.model.Oftalmolog;
+import ro.pao.model.enums.EnumExample;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MediciMapper{
 
-    private static final MediciMapper INSTANCE = new MediciMapper();
+public class OftalmologMapper {
 
-    private MediciMapper(){
+    private static final OftalmologMapper INSTANCE = new OftalmologMapper();
+
+    private OftalmologMapper() {
     }
 
-    public static MediciMapper getInstance(){
+    public static OftalmologMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<Medici> mapToMedici(ResultSet resultSet) throws SQLException {
+
+    public Optional<Oftalmolog> mapToOftalmolog(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
-                    Medici.builder()
+                    Oftalmolog.builder()
                             .idPersoana(resultSet.getString(1))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
@@ -44,12 +47,12 @@ public class MediciMapper{
         }
     }
 
-    public List<Medici> mapToMediciList(ResultSet resultSet) throws SQLException {
-        List<Medici> MediciList = new ArrayList<>();
+    public List<Oftalmolog> mapToOftalmologList(ResultSet resultSet) throws SQLException {
+        List<Oftalmolog> OftalmologList = new ArrayList<>();
         while (resultSet.next()) {
-            MediciList.add(
-                    Medici.builder()
-                            .idPersoana(resultSet.getString(1))
+            OftalmologList.add(
+                    Oftalmolog.builder()
+                            .idPersoana((resultSet.getString(1)))
                             .nume(resultSet.getString(2))
                             .prenume(resultSet.getString(3))
                             .email(resultSet.getString(4))
@@ -64,6 +67,6 @@ public class MediciMapper{
             );
         }
 
-        return MediciList;
+        return OftalmologList;
     }
 }

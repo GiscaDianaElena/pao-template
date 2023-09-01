@@ -1,12 +1,8 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.ExampleClass;
-import ro.pao.model.Factura;
 import ro.pao.service.FacturaService;
 
 import java.util.*;
-
-import java.util.stream.Collectors;
 
 public class FacturaServiceImpl implements FacturaService {
     private static List<Factura> facturaList = new ArrayList<>();

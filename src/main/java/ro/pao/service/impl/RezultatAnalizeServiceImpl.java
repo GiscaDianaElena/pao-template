@@ -1,7 +1,5 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.Programare;
-import ro.pao.model.RezultatAnalize;
 import ro.pao.service.RezultatAnalizeService;
 
 import java.util.ArrayList;

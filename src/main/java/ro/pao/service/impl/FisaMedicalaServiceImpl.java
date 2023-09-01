@@ -1,7 +1,5 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.Factura;
-import ro.pao.model.FisaMedicala;
 import ro.pao.service.FisaMedicalaService;
 
 import java.util.ArrayList;
