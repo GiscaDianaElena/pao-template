@@ -9,7 +9,9 @@ import java.util.UUID;
 
 public interface ProgramareRepository {
 
-    Optional<Programare> getProgramareById(UUID id);
+    static Optional<Programare> getProgramareById(UUID id) {
+        return null;
+    }
 
     Optional<Programare> getProgramareByData(Data date);
     Optional<Programare> getProgramareByMedici(UUID id);
@@ -28,4 +30,6 @@ public interface ProgramareRepository {
     List<Programare> getAll();
 
     void addAllFromGivenList(List<Programare> ProgramareList);
+
+    Optional<Programare> getProgramareByIdProgramare(UUID id);
 }

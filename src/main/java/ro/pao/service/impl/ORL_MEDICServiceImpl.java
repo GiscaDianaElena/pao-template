@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 // import ro.pao.application.csv.CsvReader;
 // import ro.pao.application.csv.CsvWriter;
 import ro.pao.model.Tratament;
-import ro.pao.model.Pacient;
-import ro.pao.repository.PacientRepository;
-import ro.pao.service.PacientService;
+import ro.pao.model.ORL_MEDIC;
+import ro.pao.repository.ORL_MEDICRepository;
+import ro.pao.service.ORL_MEDICService;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,53 +18,53 @@ import java.util.*;
  */
 @RequiredArgsConstructor
 @Getter
-public class PacientServiceImpl implements PacientService {
+public class ORL_MEDICServiceImpl implements ORL_MEDICService {
 
-    private final PacientRepository pacientRepository;
-    private static List<Pacient> pacientList = new ArrayList<>();
+    private final ORL_MEDICRepository orl_MEDICRepository;
+    private static List<ORL_MEDIC> ORL_MEDICList = new ArrayList<>();
 
     @Override
-    public Optional<Pacient> getById(UUID id) {
-        return pacientRepository.getObjectById(id);
+    public Optional<ORL_MEDIC> getById(UUID id) {
+        return orl_MEDICRepository.getObjectById(id);
     }
 
     @Override
-    public Optional<Pacient> getBySomeFieldOfClass(Object someFieldFromPacient) {
+    public Optional<ORL_MEDIC> getBySomeFieldOfClass(Object someFieldFromORL_MEDIC) {
         return Optional.empty();
     }
 
     @Override
-    public List<Pacient> getAllFromList() {
-        return pacientRepository.getAll();
+    public List<ORL_MEDIC> getAllFromList() {
+        return orl_MEDICRepository.getAll();
     }
 
     @Override
-    public List<Pacient> getAllWithCondition() {
+    public List<ORL_MEDIC> getAllWithCondition() {
         return null;
     }
 
     @Override
-    public void addAllFromGivenList(List<Pacient> PacientList) {
-        pacientRepository.addAllFromGivenList(PacientList);
+    public void addAllFromGivenList(List<ORL_MEDIC> ORL_MEDICList) {
+        orl_MEDICRepository.addAllFromGivenList(ORL_MEDICList);
     }
 
     @Override
-    public void addOnlyOne(Pacient Pacient) {
-        pacientRepository.addNewObject(Pacient);
+    public void addOnlyOne(ORL_MEDIC ORL_MEDIC) {
+        orl_MEDICRepository.addNewObject(ORL_MEDIC);
     }
 
     @Override
     public void removeElementById(UUID id) {
-        pacientRepository.deleteObjectById(id);
+        orl_MEDICRepository.deleteObjectById(id);
     }
 
     @Override
-    public void modificaElementById(UUID id, Pacient newElement) {
-        pacientRepository.updateObjectById(id, newElement);
+    public void modificaElementById(UUID id, ORL_MEDIC newElement) {
+        orl_MEDICRepository.updateObjectById(id, newElement);
     }
 
     /*
-    private void readFromCsv(List<Pacient> PacientList) throws Exception {
+    private void readFromCsv(List<ORL_MEDIC> ORL_MEDICList) throws Exception {
         try {
             CsvReader csvReader = CsvReader.getInstance();
 
@@ -85,8 +85,7 @@ public class PacientServiceImpl implements PacientService {
         }
     }
 
-
-    private void writeToCsv(List<Pacient> PacientList) throws Exception {
+    private void writeToCsv(List<ORL_MEDIC> ORL_MEDICList) throws Exception {
         // Suppose you have a list of String[] arrays representing rows in a CSV file, like this:
         List<String[]> lines = new ArrayList<>();
         lines.add(new String[] {"id", "name", "age"});

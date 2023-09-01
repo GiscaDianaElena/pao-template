@@ -4,13 +4,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 // import ro.pao.application.csv.CsvReader;
 // import ro.pao.application.csv.CsvWriter;
-import ro.pao.model.Tratament;
-import ro.pao.model.Pacient;
-import ro.pao.repository.PacientRepository;
-import ro.pao.service.PacientService;
+import ro.pao.model.Medicament;
+import ro.pao.repository.MedicamentRepository;
+import ro.pao.service.MedicamentService;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -18,53 +15,80 @@ import java.util.*;
  */
 @RequiredArgsConstructor
 @Getter
-public class PacientServiceImpl implements PacientService {
+public class MedicamentServiceImpl implements MedicamentService {
 
-    private final PacientRepository pacientRepository;
-    private static List<Pacient> pacientList = new ArrayList<>();
+    private final MedicamentRepository medicamentRepository;
 
     @Override
-    public Optional<Pacient> getById(UUID id) {
-        return pacientRepository.getObjectById(id);
+    public Optional<Medicament> getById(UUID id) {
+        return medicamentRepository.getObjectById(id);
     }
 
     @Override
-    public Optional<Pacient> getBySomeFieldOfClass(Object someFieldFromPacient) {
+    public Optional<Medicament> getByNume(Medicament someFieldFromMedicament) {
         return Optional.empty();
     }
 
     @Override
-    public List<Pacient> getAllFromList() {
-        return pacientRepository.getAll();
+    public Optional<List<Medicament>> getByPret() {
+        Optional<List<Medicament>> byPret = getByPret(null);
+        Optional<List<Medicament>> byPret1 = byPret;
+        return byPret1;
+    }
+
+    /*
+    @Override
+    public Optional<List<Medicament>> getByPret(Double pret) {
+        return Optional.empty();
+    }
+     */
+
+    @Override
+    public Optional<Medicament> getByName(Medicament someFieldFromMedicament) {
+        return Optional.empty();
     }
 
     @Override
-    public List<Pacient> getAllWithCondition() {
+    public Optional<List<Medicament>> getByPret(Double pret) {
+
+        //return Optional.empty();
+        return medicamentRepository.getObjectByPret(pret);
+
+    }
+
+    @Override
+    public List<Medicament> getAllFromList() {
+        return medicamentRepository.getAll();
+    }
+
+    @Override
+    public List<Medicament> getAllWithCondition() {
         return null;
     }
 
     @Override
-    public void addAllFromGivenList(List<Pacient> PacientList) {
-        pacientRepository.addAllFromGivenList(PacientList);
+    public void addAllFromGivenList(List<Medicament> MedicamentList) {
+        medicamentRepository.addAllFromGivenList(MedicamentList);
     }
 
     @Override
-    public void addOnlyOne(Pacient Pacient) {
-        pacientRepository.addNewObject(Pacient);
+    public void addOnlyOne(Medicament Medicament) {
+        medicamentRepository.addNewObject(Medicament);
     }
 
     @Override
     public void removeElementById(UUID id) {
-        pacientRepository.deleteObjectById(id);
+        medicamentRepository.deleteObjectById(id);
     }
 
     @Override
-    public void modificaElementById(UUID id, Pacient newElement) {
-        pacientRepository.updateObjectById(id, newElement);
+    public void modificaElementById(UUID id, Medicament newElement) {
+        medicamentRepository.updateObjectById(id, newElement);
     }
 
+
     /*
-    private void readFromCsv(List<Pacient> PacientList) throws Exception {
+    private void readFromCsv(List<Medicament> MedicamentList) throws Exception {
         try {
             CsvReader csvReader = CsvReader.getInstance();
 
@@ -85,8 +109,7 @@ public class PacientServiceImpl implements PacientService {
         }
     }
 
-
-    private void writeToCsv(List<Pacient> PacientList) throws Exception {
+    private void writeToCsv(List<Medicament> MedicamentList) throws Exception {
         // Suppose you have a list of String[] arrays representing rows in a CSV file, like this:
         List<String[]> lines = new ArrayList<>();
         lines.add(new String[] {"id", "name", "age"});
@@ -120,4 +143,5 @@ public class PacientServiceImpl implements PacientService {
             e.printStackTrace();
         }
      */
+
     }
