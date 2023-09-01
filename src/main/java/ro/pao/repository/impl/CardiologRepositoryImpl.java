@@ -51,7 +51,7 @@ public class CardiologRepositoryImpl implements CardiologRepository {
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
-            preparedStatement.setDouble(1, newObject.getSalariu().double());
+            // preparedStatement.setDouble(1, newObject.getSalariu().double());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();
@@ -76,7 +76,7 @@ public class CardiologRepositoryImpl implements CardiologRepository {
             preparedStatement.setString(7, Cardiolog.getNumarTelefon().toString());
             preparedStatement.setDate(8, Date.valueOf(Cardiolog.getData_angajare().toString()));
             preparedStatement.setInt(9, Cardiolog.getExperienta().intValue());
-            preparedStatement.setDouble(10, Cardiolog.getSalariu().doubleValue());
+            // preparedStatement.setDouble(10, Cardiolog.getSalariu().doubleValue());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
