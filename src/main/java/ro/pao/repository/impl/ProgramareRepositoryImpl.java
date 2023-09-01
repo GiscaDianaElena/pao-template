@@ -147,4 +147,9 @@ public class ProgramareRepositoryImpl implements ProgramareRepository {
     public void addAllFromGivenList(List<Programare> ProgramareList) {
         ProgramareList.forEach(this::addNewProgramare);
     }
+
+    @Override
+    public Optional<Programare> getProgramareByIdProgramare(UUID id) {
+        return Optional.empty();
+    }
 }

@@ -13,6 +13,16 @@ public interface ProgramareRepository {
         return null;
     }
 
+    // Optional<Programare> getProgramareById(UUID id);
+
+    // Optional<Programare> getProgramareById(UUID id);
+
+    // Optional<Programare> getProgramareById(UUID id);
+
+    // Optional<Programare> getProgramareById(UUID id);
+
+    Optional<Programare> getProgramareById(UUID id);
+
     Optional<Programare> getProgramareByData(Data date);
     Optional<Programare> getProgramareByMedici(UUID id);
     Optional<List<Programare>> getObjectByData(String date);

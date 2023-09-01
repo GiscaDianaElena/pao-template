@@ -55,23 +55,23 @@ public class PacientMapper {
         while (resultSet.next()) {
             PacientList.add(
                     Pacient.builder()
-                            .idPerson(resultSet.getString(1))
-                            .name(resultSet.getString(2))
-                            .last_name(resultSet.getString(3))
+                            .idPersoana(resultSet.getString(1))
+                            .nume(resultSet.getString(2))
+                            .prenume(resultSet.getString(3))
                             .email(resultSet.getString(4))
                             .CNP(resultSet.getString(5))
-                            .adress(resultSet.getString(6))
-                            .phone_number(resultSet.getString(7))
+                            .adresa(resultSet.getString(6))
+                            .numarTelefon(resultSet.getString(7))
                             .status(resultSet.getString(8))
-                            .disease(resultSet.getString(9))
-                            .bloodType(resultSet.getString(10))
-                            .medical_insurance(resultSet.getString(11))
-                            .appointment((Appointment) resultSet.getObject(12))
-                            .cure((Cure) resultSet.getObject(13))
+                            .boala(resultSet.getString(9))
+                            .GrupaSange(resultSet.getString(10))
+                            .AsigurareMedicala(resultSet.getString(11))
+                            .programare((Programare) resultSet.getObject(12))
+                            .tratament((Tratament) resultSet.getObject(13))
                             .build()
             );
         }
 
-        return PatientList;
+        return PacientList;
     }
 }
