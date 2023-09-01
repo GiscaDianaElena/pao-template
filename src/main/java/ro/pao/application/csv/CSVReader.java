@@ -1,6 +1,7 @@
 package ro.pao.application.csv;
 
-import com.opencsv.CSVReader;
+/*
+// import com.opencsv.CSVReader;
 import ro.pao.exceptions.CustomFileNotFoundException;
 
 import java.io.Reader;
@@ -33,13 +34,15 @@ public class CsvReader {
             throw new CustomFileNotFoundException("File not found!");
         }
 
+        /*
         try (Reader reader = Files.newBufferedReader(filePath)) {
             try (CSVReader csvReader = new CSVReader(reader)) {
                 return csvReader.readAll();
             }
         }
-    }
 
+
+    /*
     public List<String[]> readLineByLine(Path filePath) throws Exception {
         List<String[]> list = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(filePath)) {
@@ -53,12 +56,15 @@ public class CsvReader {
         return list;
     }
 
+
+    /*
     public List<String[]> executeLineByLine() throws Exception {
         Path path = Paths.get(
                 ClassLoader.getSystemResource(CSV_PATH_READ).toURI());
 
-        return readLineByLine(path);
+        // return readLineByLine(path);
     }
+
 
     public List<String[]> executeAllLines() throws Exception {
         Path path = Paths.get(
@@ -67,3 +73,4 @@ public class CsvReader {
         return readAllLines(path);
     }
 }
+*/

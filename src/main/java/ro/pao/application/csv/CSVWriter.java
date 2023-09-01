@@ -1,8 +1,10 @@
 package ro.pao.application.csv;
 
+/*
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import org.apache.commons.lang3.NotImplementedException;
+
 
 import java.io.FileWriter;
 import java.io.Reader;
@@ -31,6 +33,7 @@ public class CsvWriter {
         return INSTANCE;
     }
 
+    /*
     public String writeLineByLine(List<String[]> lines, Path path) throws Exception {
         try (CSVWriter writer = new CSVWriter(new FileWriter(path.toFile()))) {
             for (String[] line : lines) {
@@ -40,6 +43,7 @@ public class CsvWriter {
         // Read the file and return its contents
         return Files.readString(path);
     }
+
 
     public String writeAllLines(List<String[]> lines, Path path) throws Exception {
         try (CSVWriter writer = new CSVWriter(new FileWriter(path.toString()))) {
@@ -62,3 +66,4 @@ public class CsvWriter {
         return writeAllLines(lines, path);
     }
 }
+ */
