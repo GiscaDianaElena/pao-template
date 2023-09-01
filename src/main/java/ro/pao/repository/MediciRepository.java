@@ -1,27 +1,24 @@
 package ro.pao.repository;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
+import ro.pao.model.Programare;
 import ro.pao.model.Medici;
-
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface MediciRepository {
 
-    Optional<Medici> getMediciBynume(Medici nume);
+    Optional<Medici> getMediciById(String id);
+    Optional<List<Medici>> getObjectByName(String name);
 
-    Optional<List<Medici>> getObjectBynume(Medici nume);
+    void deleteMediciById(String id);
 
-    void deleteMediciBynume(Medici nume);
+    void updateMediciById(String id, Medici newMedici);
 
-    void updateMediciBynume(Medici nume, Medici newMedici);
-
-    void addNewMedici(Medici Medici);
-
-    Optional<Medici> getMediciBynume();
-
-    void deleteFisaMedicalaBypacient(FisaMedicala pacient);
+    void addNewMedici(Medici medici);
 
     List<Medici> getAll();
 

@@ -20,4 +20,6 @@ public interface ProgramareService {
     void addAllFromGivenList(List<Programare> programareList);
 
     void addOnlyOne(Programare programare);
+
+    boolean getByData(String nameValue);
 }

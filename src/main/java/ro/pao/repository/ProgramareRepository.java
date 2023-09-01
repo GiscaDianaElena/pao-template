@@ -9,17 +9,21 @@ import java.util.UUID;
 
 public interface ProgramareRepository {
 
-    Optional<Programare> getProgramareBydataOra(Programare dataOra);
+    Optional<Programare> getProgramareById(UUID id);
 
-    Optional<List<Programare>> getObjectBydataOra(Programare dataOra);
+    Optional<Programare> getProgramareByData(Data date);
+    Optional<Programare> getProgramareByMedici(UUID id);
+    Optional<List<Programare>> getObjectByData(String date);
 
-    void deleteProgramareBydataOra(Programare dataOra);
+    Optional<List<Programare>> getObjectByMedici(UUID id);
 
-    void updateProgramareBydataOra(Programare dataOra,Programare newProgramare);
+    Optional<List<Programare>> getObjectByDoctor(UUID id);
 
-    void addNewProgramare(Programare Programare);
+    void deleteProgramareById(UUID id);
 
-    Optional<Programare> getProgramareBydataOra();
+    void updateProgramareById(UUID id, Programare newProgramare);
+
+    void addNewProgramare(Programare programare);
 
     List<Programare> getAll();
 

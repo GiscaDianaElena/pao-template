@@ -1,29 +1,29 @@
 package ro.pao.repository.impl;
 
 import ro.pao.config.DatabaseConfiguration;
-import ro.pao.mapper.TratamentMapper;
-import ro.pao.model.Tratament;
-import ro.pao.repository.TratamentRepository;
+import ro.pao.mapper.ORL_MEDICMapper;
+import ro.pao.model.ORL_MEDIC;
+import ro.pao.repository.ORL_MEDICRepository;
 
 import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class TratamentRepositoryImpl implements TratamentRepository {
+public class ORL_MEDICRepositoryImpl implements ORL_MEDICRepository {
 
-    private static final TratamentMapper tratamentMapper = TratamentMapper.getInstance();
+    private static final ORL_MEDICMapper orlMedicMapper = ORL_MEDICMapper.getInstance();
 
     @Override
-    public Optional<Tratament> getObjectById(UUID id) {
-        String selectSql = "SELECT * FROM tratament WHERE id=?";
+    public Optional<ORL_MEDIC> getObjectById(UUID id) {
+        String selectSql = "SELECT * FROM ORL_MEDIC WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
             preparedStatement.setString(1, id.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return tratamentMapper.mapToTratament(resultSet);
+            return orlMedicMapper.mapToORL_MEDIC(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class TratamentRepositoryImpl implements TratamentRepository {
 
     @Override
     public void deleteObjectById(UUID id) {
-        String updateNameSql = "DELETE FROM tratament WHERE id=?";
+        String updateNameSql = "DELETE FROM ORL_MEDIC WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
@@ -46,12 +46,12 @@ public class TratamentRepositoryImpl implements TratamentRepository {
     }
 
     @Override
-    public void updateObjectById(UUID id, Tratament newObject) {
-        String updateNameSql = "UPDATE tratament SET nume =? WHERE id=?";
+    public void updateObjectById(UUID id, ORL_MEDIC newObject) {
+        String updateNameSql = "UPDATE ORL_Doctor SET salary=? WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
-            preparedStatement.setString(1, newObject.getNume());
+            // preparedStatement.setDouble(1, newObject.getSalariu().doubleValue());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();
@@ -61,15 +61,22 @@ public class TratamentRepositoryImpl implements TratamentRepository {
     }
 
     @Override
-    public void addNewObject(Tratament Tratament) {
-        String insertSql = "INSERT INTO Tratament (idTratament, nume, dataPrescrierii) VALUES (?, ?,?)";
+    public void addNewObject(ORL_MEDIC ORL_MEDIC) {
+        String insertSql = "INSERT INTO ORL_MEDIC (id, nume,prenume, email,cnp, adresa, numarTelefon " +
+                ", data_angajare, experienta,salariu) VALUES (?, ?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
-            preparedStatement.setString(1, Tratament.getIdTratament().toString());
-            preparedStatement.setString(2, Tratament.getNume().toString());
-            preparedStatement.setDate(3, Date.valueOf(Tratament.getDataPrescrierii().toString()));
-
+            preparedStatement.setString(1, ORL_MEDIC.getIdPersoana().toString());
+            preparedStatement.setString(2, ORL_MEDIC.getNume().toString());
+            preparedStatement.setString(3, ORL_MEDIC.getPrenume().toString());
+            preparedStatement.setString(4, ORL_MEDIC.getEmail().toString());
+            preparedStatement.setString(5, ORL_MEDIC.getCNP().toString());
+            preparedStatement.setString(6, ORL_MEDIC.getAdresa().toString());
+            preparedStatement.setString(7, ORL_MEDIC.getNumarTelefon().toString());
+            preparedStatement.setDate(8, Date.valueOf(ORL_MEDIC.getData_angajare().toString()));
+            preparedStatement.setInt(9, ORL_MEDIC.getExperienta().intValue());
+            // preparedStatement.setDouble(10, ORL_MEDIC.getSalariu().doubleValue());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -78,14 +85,14 @@ public class TratamentRepositoryImpl implements TratamentRepository {
     }
 
     @Override
-    public List<Tratament> getAll() {
-        String selectSql = "SELECT * FROM tratament";
+    public List<ORL_MEDIC> getAll() {
+        String selectSql = "SELECT * FROM ORL_MEDIC";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return tratamentMapper.mapToTratamentList(resultSet);
+            return orlMedicMapper.mapToORL_MEDICList(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +101,7 @@ public class TratamentRepositoryImpl implements TratamentRepository {
     }
 
     @Override
-    public void addAllFromGivenList(List<Tratament> TratamentList) {
-        TratamentList.forEach(this::addNewObject);
+    public void addAllFromGivenList(List<ORL_MEDIC> ORL_MEDICList) {
+        ORL_MEDICList.forEach(this::addNewObject);
     }
 }

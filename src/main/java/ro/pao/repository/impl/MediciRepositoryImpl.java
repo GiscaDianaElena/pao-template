@@ -3,137 +3,118 @@ import ro.pao.config.DatabaseConfiguration;
 import ro.pao.mapper.MediciMapper;
 import ro.pao.model.Medici;
 import ro.pao.repository.MediciRepository;
+import ro.pao.threads.AsyncLogger;
+import ro.pao.threads.ThreadExecuter;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.logging.Level;
 
-public abstract class MediciRepositoryImpl implements MediciRepository {
+
+public class MediciRepositoryImpl implements MediciRepository {
 
     private static final MediciMapper mediciMapper = MediciMapper.getInstance();
-    private Medici nume;
 
     @Override
-    public Optional<Medici> getMediciBynume(Medici nume) {
-        String id_app = "SELECT * FROM appointment WHERE id=?";
+    public Optional<Medici> getMediciById(String id) {
+        String selectSql = "SELECT * FROM medici WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(id_app)) {
-            preparedStatement.setString(1, nume.toString());
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setString(1, id.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return MediciMapper.mapToMedici(resultSet);
+            return mediciMapper.mapToMedici(resultSet);
         } catch (SQLException e) {
-            e.printStackTrace();
+            AsyncLogger.getInstance().log(Level.SEVERE,
+                    "A esuat cautarea doctorului dupa id\n" + e.getMessage());
         }
 
         return Optional.empty();
     }
-
-    /*
     @Override
-    public Optional<List<Medici>> getObjectBynume(Medici nume) {
-        String selectSql = "SELECT * FROM appointment WHERE nume =?";
+    public Optional<List<Medici>> getObjectByName(String name) {
+        String selectSql = "SELECT * FROM medici WHERE name = ?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
-            preparedStatement.setString(1, nume.toString());
+            preparedStatement.setString(1, name.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return Optional.ofNullable(MediciMapper.mapToMediciList(resultSet));
+            return Optional.ofNullable(mediciMapper.mapToMediciList(resultSet));
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-     */
-
-    // return Optional.empty();
-
-    //  }
-
-    @Override
-    public Optional<List<Medici>> getObjectBynume(Medici nume) {
-        String selectSql = "SELECT * FROM medici WHERE nume =?";
-
-        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
-            preparedStatement.setString(1, nume.toString());
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return Optional.ofNullable(MediciMapper.mapToMediciList(resultSet));
-        } catch (SQLException e) {
-            e.printStackTrace();
+            AsyncLogger.getInstance().log(Level.SEVERE,
+                    "A esuat cautarea doctorului dupa nume\n" + e.getMessage());
         }
 
         return Optional.empty();
 
     }
 
-    /*
     @Override
-    public void deleteMediciBynume() {
-        deleteMediciBynume(null);
+    public void deleteMediciById(String id) {
+        String updateNameSql = "DELETE FROM medici WHERE id=?";
+
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)){
+            preparedStatement.setString(1, id.toString());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            ThreadExecuter.getInstance().add(() -> {
+                AsyncLogger.getInstance().log(Level.SEVERE,
+                        "A esuat stergerea doctorului\n" + e.getMessage());
+            });
+        }
     }
-     */
 
-    /*
+
+
     @Override
-    public void deleteMediciBynume(Medici nume) {
-    }
-     */
+    public void updateMediciById(String id, Medici newMedici) {
+        String updateNameSql = "UPDATE medici SET salariu =? WHERE id=?";
 
-    /*
-    @Override
-    public void updateMediciBynume(Medici nume, Medici newMedici) {
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
+            // preparedStatement.setDouble(1, newMedici.getSalariu().doubleValue());
+            preparedStatement.setString(2, id.toString());
 
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            AsyncLogger.getInstance().log(Level.SEVERE,
+                    "A esuat updatarea doctorului\n" + e.getMessage());
+        }
     }
 
     @Override
     public void addNewMedici(Medici Medici) {
-
-    }
-     */
-
-    @Override
-    public Optional<Medici> getMediciBynume() {
-        Optional<Medici> mediciBynume = getMediciBynume(null);
-        return mediciBynume;
-    }
-
-    /*
-    @Override
-    public Optional<Medici> getMediciBynume(Medici nume) {
-        this.nume = nume;
-        return Optional.empty();
-    }
-     */
-
-    @Override
-    public void deleteMediciBynume(Medici nume) {
-        String updateNameSql = "DELETE FROM appointment WHERE nume =?";
+        String insertSql = "INSERT INTO medici (id, nume, prenume, email, cnp, adresa , numarTelefon, " +
+                "data_angajare, experienta, salariu) VALUES (?, ?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
-            preparedStatement.setString(1, nume.toString());
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
+            preparedStatement.setString(1, Medici.getIdPersoana().toString());
+            preparedStatement.setString(2, Medici.getNume().toString());
+            preparedStatement.setString(3, Medici.getPrenume().toString());
+            preparedStatement.setString(4, Medici.getEmail().toString());
+            preparedStatement.setString(5, Medici.getCNP().toString());
+            preparedStatement.setString(6, Medici.getAdresa().toString());
+            preparedStatement.setString(7, Medici.getNumarTelefon().toString());
+            preparedStatement.setString(8, Medici.getData_angajare().toString());
+            preparedStatement.setInt(9, Medici.getExperienta().intValue());
+            // preparedStatement.setDouble(10, Medici.getSalariu().doubleValue());
+
+
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            AsyncLogger.getInstance().log(Level.SEVERE,
+                    "A esuat inserarea doctorului\n" + e.getMessage());
         }
     }
-
-    @Override
-    public void updateMediciBynume(Medici nume, Medici newMedici) {
-        String updateNameSql = "UPDATE medici SET prenume=? WHERE nume=?";
-
-        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
-            preparedStatement.setString(1, nume.toString());
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Override
     public List<Medici> getAll() {
@@ -145,7 +126,8 @@ public abstract class MediciRepositoryImpl implements MediciRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             return mediciMapper.mapToMediciList(resultSet);
         } catch (SQLException e) {
-            e.printStackTrace();
+            AsyncLogger.getInstance().log(Level.SEVERE,
+                    "A esuat de a afisa toti doctorii\n" + e.getMessage());
         }
 
         return List.of();
@@ -153,9 +135,6 @@ public abstract class MediciRepositoryImpl implements MediciRepository {
 
     @Override
     public void addAllFromGivenList(List<Medici> MediciList) {
-        MediciList.forEach(this::addMedici);
-    }
-
-    private void addMedici(Medici medici) {
+        MediciList.forEach(this::addNewMedici);
     }
 }

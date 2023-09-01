@@ -2,22 +2,19 @@ package ro.pao.repository;
 
 import ro.pao.model.Pacient;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface PacientRepository {
 
-    Optional<Pacient> getPacientBynume(Pacient nume);
+    Optional<Pacient> getObjectById(UUID id);
 
-    Optional<List<Pacient>> getObjectBynume(Pacient nume);
+    void deleteObjectById(UUID id);
 
-    void deletePacientBynume(Pacient nume);
+    void updateObjectById(UUID id, Pacient newObject);
 
-    void updatePacientBynume(Pacient nume, Pacient newPacient);
-
-    void addNewPacient(Pacient Pacient);
+    void addNewObject(Pacient pacient);
 
     List<Pacient> getAll();
 

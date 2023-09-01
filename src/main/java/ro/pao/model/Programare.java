@@ -33,4 +33,8 @@ public class Programare {
     public boolean obtinePret() {
         return false;
     }
+
+    public Object getId_medici() {
+        return null;
+    }
 }
